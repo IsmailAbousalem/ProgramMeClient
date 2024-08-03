@@ -1,10 +1,10 @@
-import HeaderComponent from "../components/HeaderComponent";
-
 function HomePage() {
   return (
     <>
-      <HeaderComponent></HeaderComponent>
-      <div>HomePage</div>
+    <div>
+        asdfasdfasdfasdfa;slkdfja;sldkjf
+    </div>
+      <div>HomePageasdfasdfasdf</div>
     </>
   );
 }
