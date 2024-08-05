@@ -1,9 +1,7 @@
 function HomePage() {
   return (
     <>
-    <div>
-        asdfasdfasdfasdfa;slkdfja;sldkjf
-    </div>
+      <div>asdfasdfasdfasdfa;slkdfja;sldkjf</div>
       <div>HomePageasdfasdfasdf</div>
     </>
   );
