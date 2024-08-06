@@ -35,10 +35,13 @@ function PostCard(props) {
         <h3 className="title">{post.title}</h3>
       </Link>
       <p className="description">{post.description}</p>
-      <p className="price">${post.price} /hr</p>
-      <Link to={`/posts/${post.id}`}>
-        <button className="button">→</button>
-      </Link>
+      
+      <div className="bottom-container">
+        <p className="price">${post.price} /hr</p>
+        <Link to={`/posts/${post.id}`}>
+          <button className="button">→</button>
+        </Link>
+      </div>
     </section>
   );
 }
