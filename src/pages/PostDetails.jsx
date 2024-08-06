@@ -56,9 +56,6 @@ function PostDetails() {
             </Link>
             <p className="description">{post.description}</p>
             <p className="price">${post.price} /hr</p>
-            <Link to={`/posts/${post.id}`}>
-              <button className="button">→</button>
-            </Link>
           </article>
         </div>
       )}
