@@ -15,7 +15,7 @@
   padding: 20px;
   background: white; /* Or any other background color for the post card */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  /* border-radius: 8px; */ /* Optional: Add rounded corners */
 }
 
 .post-card-container {

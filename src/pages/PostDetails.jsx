@@ -50,7 +50,7 @@ function PostDetails() {
                 })}
               </p>
             </div>
-            <img src={post.image} alt={post.title} />
+            {/* <img src={post.image} alt={post.title} /> */}
             <Link to={`/posts/${post.id}`}>
               <h3 className="title">{post.title}</h3>
             </Link>
