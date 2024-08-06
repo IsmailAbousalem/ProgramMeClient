@@ -2,6 +2,24 @@
 
 /* Existing styles... */
 
+.post-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the start of the container */
+  padding-top: 50px; /* Adjust this value to move the post higher */
+  min-height: 100vh; /* Full viewport height */
+  background: #000f1f; /* Use the same background color as HomePage */
+}
+
+.post-card {
+  max-width: 800px; /* Increase the width as needed */
+  width: 100%;
+  padding: 20px;
+  background: white; /* Or any other background color for the post card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
 .post-card-container {
     padding-top: 20px;
     display: flex;
