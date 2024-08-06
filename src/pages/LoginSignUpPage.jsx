@@ -1,7 +1,13 @@
+import "../styles/LoginSignupPage.css";
+
 function LoginSignUpPage() {
   return (
-    <div>LoginSignUpPage</div>
-  )
+    <>
+      <div className="loginsignup-container">
+        <h1 className="loginsignup-title">Login/Signup</h1>
+      </div>
+    </>
+  );
 }
 
-export default LoginSignUpPage
+export default LoginSignUpPage;

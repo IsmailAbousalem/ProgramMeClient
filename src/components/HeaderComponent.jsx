@@ -26,6 +26,12 @@ function HeaderComponent() {
       </a>
       <div class="flex items-center gap-4">
       <a
+          href="/login-signup"
+          class="inline-flex text-white h-9 items-center justify-center bg-[#015f8b] px-4 py-2 text-sm font-medium shadow transition-colors hover:bg-[#014f7a] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-[#015f8b] square-edges"
+        >
+          Login/Signup
+        </a>
+        <a
           href="/create-post"
           class="inline-flex text-white h-9 items-center justify-center bg-[#015f8b] px-4 py-2 text-sm font-medium shadow transition-colors hover:bg-[#014f7a] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-[#015f8b] square-edges"
         >
