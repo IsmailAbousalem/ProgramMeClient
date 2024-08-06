@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom"
-import "../styles/HeaderComponent.css"
+import { Link } from "react-router-dom";
+import "../styles/HeaderComponent.css";
 import { CgProfile } from "react-icons/cg";
 
 function HeaderComponent() {
   return (
-    
-<header class="bg-[#000f1f] border-b-2 border-b-[#1a3b5d] px-4 lg:px-6 h-14 flex items-center justify-between">      <a class="flex items-center gap-2" href="/">
+    <header class="bg-[#000f1f] border-b-2 border-b-[#1a3b5d] px-4 lg:px-6 h-14 flex items-center justify-between">
+      {" "}
+      <a class="flex items-center gap-2" href="/">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -24,9 +25,9 @@ function HeaderComponent() {
         <span class="font-bold text-white text-lg">ProgramMe</span>
       </a>
       <div class="flex items-center gap-4">
-        <a
+      <a
           href="/create-post"
-          class="inline-flex text-white h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+          class="inline-flex text-white h-9 items-center justify-center bg-[#015f8b] px-4 py-2 text-sm font-medium shadow transition-colors hover:bg-[#014f7a] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-[#015f8b] square-edges"
         >
           Create a Post
         </a>
@@ -35,7 +36,7 @@ function HeaderComponent() {
         </Link>
       </div>
     </header>
-  )
+  );
 }
 
-export default HeaderComponent
+export default HeaderComponent;
