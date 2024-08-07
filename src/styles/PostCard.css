@@ -27,6 +27,7 @@
 
 .post-card-list {
   display: grid;
+  /* THIS IS HOW MANY POSTS TO SHOW IN ONE ROW */
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   list-style: none;
