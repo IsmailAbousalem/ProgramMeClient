@@ -1,15 +1,40 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../styles/CreatePostPage.css";
 
 function CreatePostPage() {
+  const { id } = useParams(); // Get post ID from URL if present
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     price: "",
   });
-  const [isPostCreated, setIsPostCreated] = useState(false); // New state for tracking post creation
+
+  const [isEditMode, setIsEditMode] = useState(false); // Track if in edit mode
+  const [isSubmitting, setIsSubmitting] = useState(false); // Track if form is submitting
+  const [successMessage, setSuccessMessage] = useState(""); // Track success message
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (id) {
+      setIsEditMode(true);
+      // Fetch post data if editing
+      const fetchPostData = async () => {
+        const response = await fetch(`http://localhost:8080/posts/${id}`);
+        if (response.ok) {
+          const post = await response.json();
+          setFormData({
+            title: post.title,
+            description: post.description,
+            price: post.price,
+          });
+        } else {
+          console.error("Failed to fetch post data");
+        }
+      };
+      fetchPostData();
+    }
+  }, [id]);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -22,15 +47,23 @@ function CreatePostPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setIsSubmitting(true); // Disable the form submission
+
     const token = localStorage.getItem("token");
     const userType = localStorage.getItem("userType");
 
     if (userType !== "programmer") {
-      console.error("Only programmers can create posts");
+      console.error("Only programmers can create or edit posts");
+      setIsSubmitting(false); // Re-enable the form if submission is not allowed
       return;
     }
 
-    const url = "http://localhost:8080/posts";
+    const url = isEditMode
+      ? `http://localhost:8080/posts/${id}`
+      : "http://localhost:8080/posts";
+
+    const method = isEditMode ? "PUT" : "POST";
+
     const postData = {
       title: formData.title,
       description: formData.description,
@@ -39,7 +72,7 @@ function CreatePostPage() {
 
     try {
       const response = await fetch(url, {
-        method: "POST",
+        method,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -48,31 +81,36 @@ function CreatePostPage() {
       });
 
       if (response.ok) {
-        console.log("Post created successfully:");
-        setIsPostCreated(true); // Set the state to true to show the success message
+        setSuccessMessage(isEditMode ? "Post updated successfully!" : "Post created successfully!");
         setTimeout(() => {
-          navigate("/"); // Redirect to the homepage after 3 seconds
+          navigate("/"); // Redirect after a short delay
         }, 3000);
       } else {
-        console.error("Failed to create post");
+        console.error("Failed to create/update post");
+        setIsSubmitting(false); // Re-enable the form if submission failed
       }
     } catch (error) {
       console.error("Error:", error);
+      setIsSubmitting(false); // Re-enable the form if there was an error
     }
   };
 
   return (
     <div className="createpost-container">
-      {isPostCreated && (
-        <div className="success-message">Post created successfully!</div>
+      {successMessage && (
+        <div className="success-message">
+          {successMessage}
+        </div>
       )}
       <div className="square-lg">
         <div className="flex flex-col space-y-1.5 p-6">
           <h3 className="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
-            Create a Post
+            {isEditMode ? "Edit Post" : "Create a Post"}
           </h3>
           <p className="text-sm text-muted-foreground">
-            List your programming services on ProgramMe
+            {isEditMode
+              ? "Edit your programming services post on ProgramMe"
+              : "List your programming services on ProgramMe"}
           </p>
         </div>
         <div className="p-6">
@@ -91,6 +129,7 @@ function CreatePostPage() {
                 onChange={handleInputChange}
                 placeholder="e.g. React.js Development"
                 required
+                disabled={isSubmitting} // Disable input when submitting
               />
             </div>
             <div className="grid gap-2">
@@ -108,6 +147,7 @@ function CreatePostPage() {
                 rows="4"
                 placeholder="Describe your services..."
                 required
+                disabled={isSubmitting} // Disable input when submitting
               ></textarea>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -126,6 +166,7 @@ function CreatePostPage() {
                   onChange={handleInputChange}
                   placeholder="e.g. $50 /hr"
                   required
+                  disabled={isSubmitting} // Disable input when submitting
                 />
               </div>
               <div className="grid gap-2">
@@ -136,26 +177,25 @@ function CreatePostPage() {
                   Images
                 </label>
                 <input
-                  className="flex h-12 w-full square  -md border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-12 w-full square-md border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   id="images"
                   type="file"
                   accept="image/*"
                   multiple
+                  disabled={isSubmitting} // Disable input when submitting
                 />
               </div>
             </div>
-            <button type="submit" className="submit-button">
-              Post
+            <button
+              type="submit"
+              className="submit-button"
+              disabled={isSubmitting} // Disable the button when submitting
+            >
+              {isEditMode ? "Update Post" : "Post"}
             </button>
           </form>
         </div>
       </div>
-      <a href="https://git.io/typing-svg">
-        <img
-          src="https://readme-typing-svg.demolab.com?font=Nova+Square&weight=900&size=50&duration=2500&pause=800&color=CFFDFF&background=000F1F00&center=true&vCenter=true&multiline=true&repeat=false&width=1230&height=150&lines=Sell+yourself...;And+who+knows%2C+someone+might+just+buy+it++%F0%9F%91%80"
-          alt="Typing SVG"
-        />
-      </a>
     </div>
   );
 }

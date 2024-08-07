@@ -21,11 +21,15 @@ function HeaderComponent() {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userType");
+    localStorage.clear(); // Clear all localStorage data
+    // localStorage.removeItem("token");     |
+    // localStorage.removeItem("userType");  |
+    // localStorage.removeItem("userEmail"); | // ALTERNATIVELY COULD REMOVE JUST THE USER KEYS
+    // localStorage.removeItem("userId");    |
     setIsLoggedIn(false);
     setUserType(null);
     navigate("/login-signup");
+    window.location.reload(); // Refresh the page after logging out
   };
 
   return (
