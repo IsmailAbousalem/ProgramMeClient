@@ -7,19 +7,22 @@ import CreatePostPage from "./pages/CreatePostPage";
 import ProfilePage from "./pages/ProfilePage";
 import FooterComponent from "./components/FooterComponent";
 import PostDetails from "./pages/PostDetails";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <>
-      <HeaderComponent></HeaderComponent>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/create-post" element={<CreatePostPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/login-signup" element={<LoginSignupPage />} />
-        <Route path="/posts/:id" element={<PostDetails />} />
-      </Routes>
-      <FooterComponent></FooterComponent>
+      <AuthProvider>
+        <HeaderComponent></HeaderComponent>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/create-post" element={<CreatePostPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/login-signup" element={<LoginSignupPage />} />
+          <Route path="/posts/:id" element={<PostDetails />} />
+        </Routes>
+        <FooterComponent></FooterComponent>
+      </AuthProvider>
     </>
   );
 }
