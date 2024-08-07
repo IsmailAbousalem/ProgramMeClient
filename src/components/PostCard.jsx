@@ -71,8 +71,8 @@ function PostCard({ post }) {
         <div className="post-actions">
           <Link
             to={{
-              pathname: "/create-post",
-              state: { post },
+              pathname: `/create-post/${post.id}`,
+              state: { post }, // Pass the entire post object
             }}
             className="edit-button"
           >

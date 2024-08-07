@@ -81,10 +81,14 @@ function CreatePostPage() {
       });
 
       if (response.ok) {
-        setSuccessMessage(isEditMode ? "Post updated successfully!" : "Post created successfully!");
+        setSuccessMessage(
+          isEditMode
+            ? "Post updated successfully!"
+            : "Post created successfully!"
+        );
         setTimeout(() => {
           navigate("/"); // Redirect after a short delay
-        }, 3000);
+        }, 2000);
       } else {
         console.error("Failed to create/update post");
         setIsSubmitting(false); // Re-enable the form if submission failed
@@ -98,9 +102,7 @@ function CreatePostPage() {
   return (
     <div className="createpost-container">
       {successMessage && (
-        <div className="success-message">
-          {successMessage}
-        </div>
+        <div className="success-message">{successMessage}</div>
       )}
       <div className="square-lg">
         <div className="flex flex-col space-y-1.5 p-6">
@@ -196,6 +198,12 @@ function CreatePostPage() {
           </form>
         </div>
       </div>
+      <a href="https://git.io/typing-svg">
+        <img
+          src="https://readme-typing-svg.demolab.com?font=Nova+Square&weight=900&size=50&duration=2500&pause=800&color=CFFDFF&background=000F1F00&center=true&vCenter=true&multiline=true&repeat=false&width=1230&height=150&lines=Sell+yourself...;And+who+knows%2C+someone+might+just+buy+it++%F0%9F%91%80"
+          alt="Typing SVG"
+        />
+      </a>
     </div>
   );
 }
