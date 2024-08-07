@@ -1,23 +1,21 @@
 import { Link } from "react-router-dom";
 import { formatDistanceToNowStrict } from "date-fns";
 import "../styles/PostCard.css";
+import apiFetch from "../context/apiFetch";
 
 function PostCard({ post }) {
   // Get the current logged-in user email
   const loggedInUserEmail = localStorage.getItem("userEmail");
 
   const handleDelete = async () => {
-    const token = localStorage.getItem("token");
-
     try {
-      const response = await fetch(`http://localhost:8080/posts/${post.id}`, {
+      const response = await apiFetch(`http://localhost:8080/posts/${post.id}`, {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       });
-
+  
       if (response.ok) {
         console.log("Post deleted successfully");
         window.location.reload(); // Refresh the page after deletion
