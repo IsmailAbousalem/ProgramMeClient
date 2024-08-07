@@ -1,8 +1,75 @@
+/* Container for the create post page */
 .createpost-container {
-    min-height: 100vh; /* Full viewport height */
-    background-color: #000f1f;
+  background-color: #000f1f;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.createpost-title {
-    color: white;
+/* Post card container */
+.square-lg {
+  background-color: #001f3c;
+  color: #d4fdff;
+  border: 2px solid #305372;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  padding: 0px;
+  /* border-radius: 8px; */
+}
+
+/* Headings inside the post card */
+.square-lg h3 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #d4fdff;
+  margin-bottom: 10px;
+}
+
+.square-lg p {
+  font-size: 18px;
+  color: #d4fdff;
+}
+
+/* Form fields styling */
+.square-lg input,
+.square-lg textarea {
+  background-color: #000f1f;
+  color: #d4fdff;
+  border: 2px solid #305372;
+  padding: 10px;
+  font-size: 14px;
+  /* border-radius: 4px; */
+}
+
+.square-lg input::placeholder,
+.square-lg textarea::placeholder {
+  color: #7a92b2;
+}
+
+/* Focused state for input fields */
+.square-lg input:focus,
+.square-lg textarea:focus {
+  border-color: #1a3b5d;
+  outline: none;
+  box-shadow: 0 0 4px #1a3b5d;
+}
+
+/* Submit button styling */
+.square-lg .submit-button {
+  background-color: #005f8f;
+  color: #d4fdff;
+  padding: 12px;
+  /* border: 2px solid #305372; */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* border-radius: 4px; */
+  text-align: center;
+}
+
+.square-lg .submit-button:hover {
+  background-color: #004e73;
 }
