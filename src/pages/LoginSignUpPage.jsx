@@ -205,7 +205,7 @@ function LoginSignUpPage() {
                     id="skills"
                     value={formData.skills}
                     onChange={handleInputChange}
-                    placeholder="Enter your skills"
+                    placeholder="Web-Development, React, etc..."
                     required
                   />
                 </div>

@@ -45,7 +45,7 @@ function HeaderComponent() {
         >
           <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
         </svg>
-        <span className="font-bold text-[#d4fdff] text-lg">ProgramMe</span>
+        <span className="font-bold text-[#d4fdff] text-xl">ProgramMe</span>
       </a>
       <div className="flex items-center gap-4">
         {!isLoggedIn && (
