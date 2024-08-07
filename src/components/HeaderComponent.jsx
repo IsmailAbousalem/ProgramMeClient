@@ -21,11 +21,15 @@ function HeaderComponent() {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userType");
+    localStorage.clear(); // Clear all localStorage data
+    // localStorage.removeItem("token");     |
+    // localStorage.removeItem("userType");  |
+    // localStorage.removeItem("userEmail"); | // ALTERNATIVELY COULD REMOVE JUST THE USER KEYS
+    // localStorage.removeItem("userId");    |
     setIsLoggedIn(false);
     setUserType(null);
     navigate("/login-signup");
+    window.location.reload(); // Refresh the page after logging out
   };
 
   return (
@@ -45,7 +49,7 @@ function HeaderComponent() {
         >
           <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
         </svg>
-        <span className="font-bold text-[#d4fdff] text-lg">ProgramMe</span>
+        <span className="font-bold text-[#d4fdff] text-xl">ProgramMe</span>
       </a>
       <div className="flex items-center gap-4">
         {!isLoggedIn && (

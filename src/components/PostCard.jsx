@@ -1,9 +1,31 @@
 import { Link } from "react-router-dom";
 import { formatDistanceToNowStrict } from "date-fns";
 import "../styles/PostCard.css";
+import apiFetch from "../context/apiFetch";
 
-function PostCard(props) {
-  const { post } = props;
+function PostCard({ post }) {
+  // Get the current logged-in user email
+  const loggedInUserEmail = localStorage.getItem("userEmail");
+
+  const handleDelete = async () => {
+    try {
+      const response = await apiFetch(`http://localhost:8080/posts/${post.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (response.ok) {
+        console.log("Post deleted successfully");
+        window.location.reload(); // Refresh the page after deletion
+      } else {
+        console.error("Failed to delete post");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   return (
     <section className="post-card">
@@ -29,19 +51,37 @@ function PostCard(props) {
         </svg>
         {formatDistanceToNowStrict(new Date(post.date), { addSuffix: true })}
       </p>
-      {/* <img src={post.image} alt={post.title} /> */}
 
       <Link to={`/posts/${post.id}`}>
         <h3 className="title">{post.title}</h3>
       </Link>
       <p className="description">{post.description}</p>
-      
+
       <div className="bottom-container">
         <p className="price">${post.price} /hr</p>
         <Link to={`/posts/${post.id}`}>
           <button className="button">→</button>
         </Link>
       </div>
+
+      {/* Render Edit and Delete buttons only if the logged-in user is the post creator */}
+      {post.programmerEmail === loggedInUserEmail && (
+        <div className="post-actions">
+          <Link
+            to={{
+              pathname: `/create-post/${post.id}`,
+              state: { post }, // Pass the entire post object
+            }}
+            className="edit-button"
+          >
+            Edit
+          </Link>
+
+          <button onClick={handleDelete} className="delete-button">
+            Delete
+          </button>
+        </div>
+      )}
     </section>
   );
 }

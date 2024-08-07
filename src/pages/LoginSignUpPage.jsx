@@ -63,6 +63,8 @@ function LoginSignUpPage() {
         } else {
           localStorage.setItem("token", data.jwt); // Store the JWT token
           localStorage.setItem("userType", data.userType); // Store the user type
+          localStorage.setItem("userEmail", data.email); // Store the user email
+          localStorage.setItem("userId", data.userId); // Store the user ID
           navigate("/");
           window.location.reload(); // Refresh the page
         }
@@ -205,7 +207,7 @@ function LoginSignUpPage() {
                     id="skills"
                     value={formData.skills}
                     onChange={handleInputChange}
-                    placeholder="Enter your skills"
+                    placeholder="Web-Development, React, etc..."
                     required
                   />
                 </div>
