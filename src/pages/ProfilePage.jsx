@@ -1,13 +1,24 @@
 import "../styles/ProfilePage.css";
+import { useEffect, useState } from "react";
 
 function ProfilePage() {
+  const [userType, setUserType] = useState(null);
+
+  useEffect(() => {
+    // Assuming userType is stored in localStorage
+    const storedUserType = localStorage.getItem("userType");
+    setUserType(storedUserType);
+  }, []);
+
   return (
-    <>
-      <div className="profile-container">
-        <div className="grid-layout">
+    <div className="profile-container">
+      <div className="grid-layout">
+        {/* Render Customer Profile if the logged-in user is a Customer */}
+        {userType === "customer" && (
           <div>
             <h2 className="profile-title">Customer Profile</h2>
             <div className="profile-card" data-v0-t="card">
+              {/* Customer Profile details */}
               <div className="profile-header">
                 <span className="profile-avatar">
                   <img
@@ -63,9 +74,14 @@ function ProfilePage() {
               </div>
             </div>
           </div>
+        )}
+
+        {/* Render Programmer Profile if the logged-in user is a Programmer */}
+        {userType === "programmer" && (
           <div>
             <h2 className="profile-title">Programmer Profile</h2>
             <div className="profile-card" data-v0-t="card">
+              {/* Programmer Profile details */}
               <div className="profile-header">
                 <span className="profile-avatar">
                   <img
@@ -212,9 +228,9 @@ function ProfilePage() {
                 </button>
             </div>
           </div>
-        </div>
+        )}
       </div>
-    </>
+    </div>
   );
 }
 
