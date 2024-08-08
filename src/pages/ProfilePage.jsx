@@ -25,41 +25,49 @@ function ProfilePage() {
     const storedUserId = localStorage.getItem("userId");
     setUserType(storedUserType);
     setUserId(storedUserId);
+  }, []);
 
-    // Fetch user data based on userType
-    const token = localStorage.getItem('token');
-    const url = userType === "customer"
-      ? `http://localhost:8080/customers/${storedUserId}`
-      : `http://localhost:8080/programmers/${storedUserId}`;
-    
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (userType === "customer") {
-        setCustomerData({
-          number: data.number || '',
-          email: data.email || '',
-          password: '', // Leave password empty
-        });
-      } else if (userType === "programmer") {
-        setProgrammerData({
-          name: data.name || '',
-          number: data.number || '',
-          email: data.email || '',
-          password: '', // Leave password empty
-          skills: data.skills ? data.skills.split(', ') : ['', '', '', ''],
-          description: data.description || '',
-        });
-      }
-    })
-    .catch(error => console.error('Error fetching user data:', error));
-  }, [userType]);
+  useEffect(() => {
+    if (userType && userId) {
+      const token = localStorage.getItem('token');
+      const url = userType === "customer"
+        ? `http://localhost:8080/customers/${userId}`
+        : `http://localhost:8080/programmers/${userId}`;
+      
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (userType === "customer") {
+          setCustomerData({
+            number: data.number || '',
+            email: data.email || '',
+            password: '', // Leave password empty
+          });
+        } else if (userType === "programmer") {
+          setProgrammerData({
+            name: data.name || '',
+            number: data.number || '',
+            email: data.email || '',
+            password: '', // Leave password empty
+            skills: data.skills ? data.skills.split(', ') : ['', '', '', ''],
+            description: data.description || '',
+          });
+        }
+      })
+      .catch(error => console.error('Error fetching user data:', error));
+    }
+  }, [userType, userId]);
 
   const handleCustomerChange = (e) => {
     setCustomerData({

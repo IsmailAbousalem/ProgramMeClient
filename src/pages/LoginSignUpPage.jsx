@@ -56,18 +56,26 @@ function LoginSignUpPage() {
       if (response.ok) {
         const data = await response.json();
         console.log(isRegisterMode ? "Registration successful:" : "Login successful:", data);
+
+        console.log(data)
   
         if (isRegisterMode) {
-          setIsRegisterMode(false); // Switch to login mode
+          // After successful registration, switch to login mode
+          setIsRegisterMode(false);
           navigate("/login-signup");
         } else {
+          // Store user details in local storage after successful login
           localStorage.setItem("token", data.jwt);
           localStorage.setItem("userType", data.userType);
           localStorage.setItem("userEmail", data.email);
-          localStorage.setItem("userId", data.userId);
-          localStorage.setItem("userName", data.userName); // Store the user's name
+          localStorage.setItem("userId", data.userId); // Ensure this is returned by the backend
+          localStorage.setItem("userName", data.userName); // Ensure this is returned by the backend
+  
+          // Navigate to the home page or dashboard
           navigate("/");
-          window.location.reload(); // Refresh the page
+  
+          // Optionally refresh the page to ensure the user is logged in across the app
+          window.location.reload();
         }
       } else {
         console.error(isRegisterMode ? "Registration failed" : "Login failed");
