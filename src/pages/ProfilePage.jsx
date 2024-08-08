@@ -3,12 +3,144 @@ import { useEffect, useState } from "react";
 
 function ProfilePage() {
   const [userType, setUserType] = useState(null);
+  const [customerData, setCustomerData] = useState({
+    number: '',
+    email: '',
+    password: '',
+  });
+
+  const [programmerData, setProgrammerData] = useState({
+    name: '',
+    number: '',
+    email: '',
+    password: '',
+    skills: ['', '', '', ''],
+    description: '',
+  });
+
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    // Assuming userType is stored in localStorage
     const storedUserType = localStorage.getItem("userType");
+    const storedUserId = localStorage.getItem("userId");
     setUserType(storedUserType);
-  }, []);
+    setUserId(storedUserId);
+
+    // Fetch user data based on userType
+    const token = localStorage.getItem('token');
+    const url = userType === "customer"
+      ? `http://localhost:8080/customers/${storedUserId}`
+      : `http://localhost:8080/programmers/${storedUserId}`;
+    
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (userType === "customer") {
+        setCustomerData({
+          number: data.number || '',
+          email: data.email || '',
+          password: '', // Leave password empty
+        });
+      } else if (userType === "programmer") {
+        setProgrammerData({
+          name: data.name || '',
+          number: data.number || '',
+          email: data.email || '',
+          password: '', // Leave password empty
+          skills: data.skills ? data.skills.split(', ') : ['', '', '', ''],
+          description: data.description || '',
+        });
+      }
+    })
+    .catch(error => console.error('Error fetching user data:', error));
+  }, [userType]);
+
+  const handleCustomerChange = (e) => {
+    setCustomerData({
+      ...customerData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleProgrammerChange = (e, index) => {
+    if (e.target.id.startsWith('skill')) {
+      const updatedSkills = [...programmerData.skills];
+      updatedSkills[index] = e.target.value;
+      setProgrammerData({
+        ...programmerData,
+        skills: updatedSkills,
+      });
+    } else {
+      setProgrammerData({
+        ...programmerData,
+        [e.target.id]: e.target.value,
+      });
+    }
+  };
+
+  const handleCustomerSubmit = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const updateData = { ...customerData };
+  
+      // Only include the password in the update if it's not empty
+      if (!updateData.password) {
+        delete updateData.password;
+      }
+  
+      const response = await fetch(`http://localhost:8080/customers/${userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updateData),
+      });
+      if (response.ok) {
+        alert('Customer profile updated successfully');
+      } else {
+        alert('Failed to update customer profile');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const handleProgrammerSubmit = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const updateData = { ...programmerData };
+  
+      // Only include the password in the update if it's not empty
+      if (!updateData.password) {
+        delete updateData.password;
+      }
+  
+      updateData.skills = programmerData.skills.filter(skill => skill).join(', ');
+  
+      const response = await fetch(`http://localhost:8080/programmers/${userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updateData),
+      });
+      if (response.ok) {
+        alert('Programmer profile updated successfully');
+      } else {
+        alert('Failed to update programmer profile');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <div className="profile-container">
@@ -18,7 +150,6 @@ function ProfilePage() {
           <h2 className="profile-title">Customer Profile</h2>
           <div className="grid-layout">
             <div className="profile-card" data-v0-t="card">
-              {/* Customer Profile details */}
               <div className="profile-header">
                 <span className="profile-avatar">
                   <img
@@ -34,41 +165,41 @@ function ProfilePage() {
               </div>
               <div className="profile-info-grid">
                 <div>
-                  <label className="profile-label" htmlFor="phone">
-                    Phone
-                  </label>
+                  <label className="profile-label" htmlFor="phone">Phone</label>
                   <input
                     className="profile-input"
-                    id="phone"
+                    id="number"
                     type="tel"
                     placeholder="+1 (555) 555-5555"
+                    value={customerData.number}
+                    onChange={handleCustomerChange}
                   />
                 </div>
                 <div>
-                  <label className="profile-label" htmlFor="email">
-                    Email
-                  </label>
+                  <label className="profile-label" htmlFor="email">Email</label>
                   <input
                     className="profile-input"
                     id="email"
                     type="email"
                     placeholder="john@example.com"
+                    value={customerData.email}
+                    onChange={handleCustomerChange}
                   />
                 </div>
                 <div>
-                  <label className="profile-label" htmlFor="password">
-                    Password
-                  </label>
+                  <label className="profile-label" htmlFor="password">Password</label>
                   <input
                     className="profile-input"
                     id="password"
                     type="password"
                     placeholder="********"
+                    value={customerData.password}
+                    onChange={handleCustomerChange}
                   />
                 </div>
               </div>
               <div className="profile-actions">
-                <button className="profile-button save-button">
+                <button className="profile-button save-button" onClick={handleCustomerSubmit}>
                   Save Changes
                 </button>
               </div>
@@ -83,7 +214,6 @@ function ProfilePage() {
           <h2 className="profile-title">Programmer Profile</h2>
           <div className="grid-layout">
             <div className="profile-card" data-v0-t="card">
-              {/* Programmer Profile details */}
               <div className="profile-header">
                 <span className="profile-avatar">
                   <img
@@ -99,36 +229,36 @@ function ProfilePage() {
               </div>
               <div className="profile-info-grid">
                 <div>
-                  <label className="profile-label" htmlFor="phone">
-                    Phone
-                  </label>
+                  <label className="profile-label" htmlFor="phone">Phone</label>
                   <input
                     className="profile-input"
-                    id="phone"
+                    id="number"
                     type="tel"
                     placeholder="+1 (555) 555-5555"
+                    value={programmerData.number}
+                    onChange={handleProgrammerChange}
                   />
                 </div>
                 <div>
-                  <label className="profile-label" htmlFor="email">
-                    Email
-                  </label>
+                  <label className="profile-label" htmlFor="email">Email</label>
                   <input
                     className="profile-input"
                     id="email"
                     type="email"
                     placeholder="jane@example.com"
+                    value={programmerData.email}
+                    onChange={handleProgrammerChange}
                   />
                 </div>
                 <div>
-                  <label className="profile-label" htmlFor="password">
-                    Password
-                  </label>
+                  <label className="profile-label" htmlFor="password">Password</label>
                   <input
                     className="profile-input"
                     id="password"
                     type="password"
                     placeholder="********"
+                    value={programmerData.password}
+                    onChange={handleProgrammerChange}
                   />
                 </div>
               </div>
@@ -137,9 +267,7 @@ function ProfilePage() {
                 <div className="posts-grid">
                   <div className="post-card" data-v0-t="card">
                     <h4 className="post-title">Post Title 1</h4>
-                    <p className="post-description">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
+                    <p className="post-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     <div className="post-actions">
                       <button className="post-button view-button">View</button>
                       <button className="post-button edit-button">Edit</button>
@@ -147,9 +275,7 @@ function ProfilePage() {
                   </div>
                   <div className="post-card" data-v0-t="card">
                     <h4 className="post-title">Post Title 2</h4>
-                    <p className="post-description">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
+                    <p className="post-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     <div className="post-actions">
                       <button className="post-button view-button">View</button>
                       <button className="post-button edit-button">Edit</button>
@@ -157,9 +283,7 @@ function ProfilePage() {
                   </div>
                   <div className="post-card" data-v0-t="card">
                     <h4 className="post-title">Post Title 3</h4>
-                    <p className="post-description">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
+                    <p className="post-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     <div className="post-actions">
                       <button className="post-button view-button">View</button>
                       <button className="post-button edit-button">Edit</button>
@@ -170,50 +294,21 @@ function ProfilePage() {
               <div className="profile-skills">
                 <h3 className="skills-title">Skills</h3>
                 <div className="skills-grid">
-                  <div>
-                    <label className="profile-label" htmlFor="skill1">
-                      Skill 1
-                    </label>
-                    <input
-                      className="profile-input"
-                      id="skill1"
-                      type="text"
-                      placeholder="JavaScript"
-                    />
-                  </div>
-                  <div>
-                    <label className="profile-label" htmlFor="skill2">
-                      Skill 2
-                    </label>
-                    <input
-                      className="profile-input"
-                      id="skill2"
-                      type="text"
-                      placeholder="React"
-                    />
-                  </div>
-                  <div>
-                    <label className="profile-label" htmlFor="skill3">
-                      Skill 3
-                    </label>
-                    <input
-                      className="profile-input"
-                      id="skill3"
-                      type="text"
-                      placeholder="Node.js"
-                    />
-                  </div>
-                  <div>
-                    <label className="profile-label" htmlFor="skill4">
-                      Skill 4
-                    </label>
-                    <input
-                      className="profile-input"
-                      id="skill4"
-                      type="text"
-                      placeholder="TypeScript"
-                    />
-                  </div>
+                  {programmerData.skills.map((skill, index) => (
+                    <div key={index}>
+                      <label className="profile-label" htmlFor={`skill${index + 1}`}>
+                        Skill {index + 1}
+                      </label>
+                      <input
+                        className="profile-input"
+                        id={`skill${index + 1}`}
+                        type="text"
+                        placeholder={`Skill ${index + 1}`}
+                        value={skill}
+                        onChange={(e) => handleProgrammerChange(e, index)}
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="profile-description">
@@ -222,9 +317,11 @@ function ProfilePage() {
                   className="description-input"
                   id="description"
                   placeholder="Tell us about yourself"
+                  value={programmerData.description}
+                  onChange={handleProgrammerChange}
                 ></textarea>
               </div>
-              <button className="profile-button save-button-programmer">
+              <button className="profile-button save-button-programmer" onClick={handleProgrammerSubmit}>
                 Save Changes
               </button>
             </div>

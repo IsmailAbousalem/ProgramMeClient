@@ -85,6 +85,7 @@
   height: 16px; /* Adjusted height */
   margin-right: 8px; /* Space between icon and date text */
   margin-top: -20px;
+  color: white;
 }
 
 .post-card img {
