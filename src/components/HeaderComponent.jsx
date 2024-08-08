@@ -6,17 +6,20 @@ import { useEffect, useState } from "react";
 function HeaderComponent() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userType, setUserType] = useState(null);
+  const [userName, setUserName] = useState(null); // Track user's name
   const navigate = useNavigate();
 
   useEffect(() => {
     // Check if the user is logged in by verifying the token in localStorage
     const token = localStorage.getItem("token");
     const storedUserType = localStorage.getItem("userType");
+    const storedUserName = localStorage.getItem("userName");
     console.log(storedUserType); // Debugging line
 
     if (token && storedUserType) {
       setIsLoggedIn(true);
       setUserType(storedUserType);
+      setUserName(storedUserName); // Set the user's name
     }
   }, []);
 
@@ -28,6 +31,7 @@ function HeaderComponent() {
     // localStorage.removeItem("userId");    |
     setIsLoggedIn(false);
     setUserType(null);
+    setUserName(null);
     navigate("/login-signup");
     window.location.reload(); // Refresh the page after logging out
   };

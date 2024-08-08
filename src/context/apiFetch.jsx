@@ -22,6 +22,7 @@ async function apiFetch(url, options = {}) {
         localStorage.removeItem('userType');
         localStorage.removeItem('userEmail');
         localStorage.removeItem('userId');
+        localStorage.removeItem('userName'); // Remove the user's name
         window.location.href = '/login-signup';
         return;
       }

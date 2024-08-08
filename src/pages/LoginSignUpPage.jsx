@@ -34,14 +34,16 @@ function LoginSignUpPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     const url = isRegisterMode
       ? "http://localhost:8080/auth/signup"
       : "http://localhost:8080/auth/login";
-    const userData = {
-      ...formData,
-      userType: userType === "programmer" ? "programmer" : "customer",
-    };
-
+    
+    // Prepare the correct payload for login or registration
+    const userData = isRegisterMode
+      ? { ...formData, userType: userType === "programmer" ? "programmer" : "customer" }
+      : { email: formData.email, password: formData.password };
+  
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -50,21 +52,20 @@ function LoginSignUpPage() {
         },
         body: JSON.stringify(userData),
       });
-
+  
       if (response.ok) {
         const data = await response.json();
-        console.log(
-          isRegisterMode ? "Registration successful:" : "Login successful:",
-          data
-        );
+        console.log(isRegisterMode ? "Registration successful:" : "Login successful:", data);
+  
         if (isRegisterMode) {
           setIsRegisterMode(false); // Switch to login mode
           navigate("/login-signup");
         } else {
-          localStorage.setItem("token", data.jwt); // Store the JWT token
-          localStorage.setItem("userType", data.userType); // Store the user type
-          localStorage.setItem("userEmail", data.email); // Store the user email
-          localStorage.setItem("userId", data.userId); // Store the user ID
+          localStorage.setItem("token", data.jwt);
+          localStorage.setItem("userType", data.userType);
+          localStorage.setItem("userEmail", data.email);
+          localStorage.setItem("userId", data.userId);
+          localStorage.setItem("userName", data.userName); // Store the user's name
           navigate("/");
           window.location.reload(); // Refresh the page
         }

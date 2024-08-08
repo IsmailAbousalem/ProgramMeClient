@@ -8,31 +8,43 @@ function PostCard({ post }) {
   const loggedInUserEmail = localStorage.getItem("userEmail");
 
   const handleDelete = async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert(
+        "Session expired or insufficient permissions. Please log in again."
+      );
+      return;
+    }
+
     try {
-      const response = await apiFetch(`http://localhost:8080/posts/${post.id}`, {
+      const response = await fetch(`http://localhost:8080/posts/${post.id}`, {
         method: "DELETE",
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       });
-  
+
       if (response.ok) {
         console.log("Post deleted successfully");
         window.location.reload(); // Refresh the page after deletion
+      } else if (response.status === 403 || response.status === 401) {
+        alert(
+          "Session expired or insufficient permissions. Please log in again."
+        );
       } else {
         console.error("Failed to delete post");
       }
     } catch (error) {
       console.error("Error:", error);
+      alert("An error occurred. Please try again.");
     }
   };
 
   return (
     <section className="post-card">
-      <h3>{post.programmerName}</h3>
-      <h4>{post.description}</h4>
-
-      <p className="date">
+      <div className="date-container">
         <svg
           className="calendar-icon"
           width="100%"
@@ -49,8 +61,13 @@ function PostCard({ post }) {
             strokeLinejoin="round"
           />
         </svg>
-        {formatDistanceToNowStrict(new Date(post.date), { addSuffix: true })}
-      </p>
+        <p className="date">
+          {formatDistanceToNowStrict(new Date(post.date), { addSuffix: true })}
+        </p>
+      </div>
+
+      <h3>{post.programmerName}</h3>
+      {/* <h4>{post.description}</h4> */}
 
       <Link to={`/posts/${post.id}`}>
         <h3 className="title">{post.title}</h3>
@@ -58,10 +75,13 @@ function PostCard({ post }) {
       <p className="description">{post.description}</p>
 
       <div className="bottom-container">
-        <p className="price">${post.price} /hr</p>
-        <Link to={`/posts/${post.id}`}>
-          <button className="button">→</button>
-        </Link>
+        {/* <p className="price">${post.price} /hr</p> */}
+        <div className="bottom-container">
+          <p className="price">${post.price} /hr</p>
+          <Link to={`/posts/${post.id}`}>
+            <button className="arrow-button">→</button>
+          </Link>
+        </div>
       </div>
 
       {/* Render Edit and Delete buttons only if the logged-in user is the post creator */}

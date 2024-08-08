@@ -18,4 +18,8 @@
             text-decoration: none;
         }
     }
+
+    .text-sm {
+        color: white;
+    }
 }

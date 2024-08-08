@@ -200,7 +200,7 @@ function CreatePostPage() {
       </div>
       <a href="#">
         <img
-          src="https://readme-typing-svg.demolab.com?font=Nova+Square&weight=900&size=50&duration=2500&pause=800&color=CFFDFF&background=000F1F00&center=true&vCenter=true&multiline=true&repeat=false&width=1230&height=150&lines=Sell+yourself...;And+who+knows%2C+someone+might+just+buy+it++%F0%9F%91%80"
+          src="https://readme-typing-svg.demolab.com?font=Nova+Square&weight=900&size=50&duration=2500&pause=800&color=CFFDFF&background=000F1F00&center=true&vCenter=true&multiline=true&repeat=false&width=1230&height=150&lines=Sell+yourself...;Who+knows%2C+someone+might+just+buy+it++%F0%9F%91%80"
           alt="Typing SVG"
         />
       </a>
