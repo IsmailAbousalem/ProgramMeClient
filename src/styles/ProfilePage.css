@@ -136,6 +136,16 @@
   .save-button:hover {
     background-color: #005f8f;
   }
+
+  .save-button-programmer {
+    margin-top: 20px;
+    background-color: #3b82f6;
+    color: #fff;
+  }
+  
+  .save-button-programmer:hover {
+    background-color: #005f8f;
+  }
   
   .profile-posts {
     color: #b4e2ff;

@@ -207,6 +207,9 @@ function ProfilePage() {
                   I am a skilled full-stack developer with expertise in J
                 </textarea>
               </div>
+              <button className="profile-button save-button-programmer">
+                  Save Changes
+                </button>
             </div>
           </div>
         </div>
