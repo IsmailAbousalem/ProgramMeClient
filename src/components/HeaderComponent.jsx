@@ -37,7 +37,7 @@ function HeaderComponent() {
   };
 
   return (
-    <header className="bg-[#000f1f] border-b-2 border-b-[#1a3b5d] px-4 lg:px-6 h-14 flex items-center justify-between">
+    <header className="bg-[#000f1f] border-b-2 border-b-[#6d93bb] px-4 lg:px-6 h-14 flex items-center justify-between">
       <a className="flex items-center gap-2" href="/">
         <svg
           xmlns="http://www.w3.org/2000/svg"
