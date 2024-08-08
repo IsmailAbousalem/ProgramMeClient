@@ -300,13 +300,13 @@ function ProfilePage() {
                 </div>
               </div>
               <div className="profile-skills">
-                <h3 className="skills-title">Skills</h3>
+              <h3 className="skills-title">Skills (Separate by Comma)</h3>
                 <div className="skills-grid">
                   {programmerData.skills.map((skill, index) => (
                     <div key={index}>
-                      <label className="profile-label" htmlFor={`skill${index + 1}`}>
+                      {/* <label className="profile-label" htmlFor={`skill${index + 1}`}>
                         Skill {index + 1}
-                      </label>
+                      </label> */}
                       <input
                         className="profile-input"
                         id={`skill${index + 1}`}
