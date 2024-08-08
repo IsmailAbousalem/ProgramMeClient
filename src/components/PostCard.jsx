@@ -75,7 +75,6 @@ function PostCard({ post }) {
       <p className="description">{post.description}</p>
 
       <div className="bottom-container">
-        {/* <p className="price">${post.price} /hr</p> */}
         <div className="bottom-container">
           <p className="price">${post.price} /hr</p>
           <Link to={`/posts/${post.id}`}>
