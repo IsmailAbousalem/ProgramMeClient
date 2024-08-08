@@ -30,7 +30,7 @@ function ProfilePage() {
                     className="profile-input"
                     id="phone"
                     type="tel"
-                    value="+1 (555) 555-5555"
+                    placeholder="+1 (555) 555-5555"
                   />
                 </div>
                 <div>
@@ -41,7 +41,7 @@ function ProfilePage() {
                     className="profile-input"
                     id="email"
                     type="email"
-                    value="john@example.com"
+                    placeholder="john@example.com"
                   />
                 </div>
                 <div>
@@ -52,7 +52,7 @@ function ProfilePage() {
                     className="profile-input"
                     id="password"
                     type="password"
-                    value="********"
+                    placeholder="********"
                   />
                 </div>
               </div>
@@ -88,7 +88,7 @@ function ProfilePage() {
                     className="profile-input"
                     id="phone"
                     type="tel"
-                    value="+1 (555) 555-5555"
+                    placeholder="+1 (555) 555-5555"
                   />
                 </div>
                 <div>
@@ -99,7 +99,7 @@ function ProfilePage() {
                     className="profile-input"
                     id="email"
                     type="email"
-                    value="jane@example.com"
+                    placeholder="jane@example.com"
                   />
                 </div>
                 <div>
@@ -110,7 +110,7 @@ function ProfilePage() {
                     className="profile-input"
                     id="password"
                     type="password"
-                    value="********"
+                    placeholder="********"
                   />
                 </div>
               </div>
@@ -160,7 +160,7 @@ function ProfilePage() {
                       className="profile-input"
                       id="skill1"
                       type="text"
-                      value="JavaScript"
+                      placeholder="JavaScript"
                     />
                   </div>
                   <div>
@@ -171,7 +171,7 @@ function ProfilePage() {
                       className="profile-input"
                       id="skill2"
                       type="text"
-                      value="React"
+                      placeholder="React"
                     />
                   </div>
                   <div>
@@ -182,7 +182,7 @@ function ProfilePage() {
                       className="profile-input"
                       id="skill3"
                       type="text"
-                      value="Node.js"
+                      placeholder="Node.js"
                     />
                   </div>
                   <div>
@@ -193,7 +193,7 @@ function ProfilePage() {
                       className="profile-input"
                       id="skill4"
                       type="text"
-                      value="TypeScript"
+                      placeholder="TypeScript"
                     />
                   </div>
                 </div>
@@ -203,8 +203,8 @@ function ProfilePage() {
                 <textarea
                   className="description-input"
                   id="description"
+                  placeholder="Tell us about yourself"
                 >
-                  I am a skilled full-stack developer with expertise in J
                 </textarea>
               </div>
               <button className="profile-button save-button-programmer">

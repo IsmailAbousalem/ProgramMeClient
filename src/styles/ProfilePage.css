@@ -129,22 +129,22 @@
   }
   
   .save-button {
-    background-color: #3b82f6;
+    background-color: #005e91;
     color: #fff;
   }
   
   .save-button:hover {
-    background-color: #005f8f;
+    background-color: #005885;
   }
 
   .save-button-programmer {
     margin-top: 20px;
-    background-color: #3b82f6;
+    background-color: #005e91;
     color: #fff;
   }
   
   .save-button-programmer:hover {
-    background-color: #005f8f;
+    background-color: #005885;
   }
   
   .profile-posts {
@@ -227,7 +227,7 @@
   
   .view-button:hover,
   .edit-button:hover {
-    background-color: #f3f4f6;
+    background-color: #005885;
     color: #1f2937;
   }
   
