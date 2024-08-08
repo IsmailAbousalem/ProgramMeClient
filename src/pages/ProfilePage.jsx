@@ -12,11 +12,11 @@ function ProfilePage() {
 
   return (
     <div className="profile-container">
-      <div className="grid-layout">
-        {/* Render Customer Profile if the logged-in user is a Customer */}
-        {userType === "customer" && (
-          <div>
-            <h2 className="profile-title">Customer Profile</h2>
+      {/* Render Customer Profile if the logged-in user is a Customer */}
+      {userType === "customer" && (
+        <div className="customer-profile">
+          <h2 className="profile-title">Customer Profile</h2>
+          <div className="grid-layout">
             <div className="profile-card" data-v0-t="card">
               {/* Customer Profile details */}
               <div className="profile-header">
@@ -74,12 +74,14 @@ function ProfilePage() {
               </div>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Render Programmer Profile if the logged-in user is a Programmer */}
-        {userType === "programmer" && (
-          <div>
-            <h2 className="profile-title">Programmer Profile</h2>
+      {/* Render Programmer Profile if the logged-in user is a Programmer */}
+      {userType === "programmer" && (
+        <div className="programmer-profile">
+          <h2 className="profile-title">Programmer Profile</h2>
+          <div className="grid-layout">
             <div className="profile-card" data-v0-t="card">
               {/* Programmer Profile details */}
               <div className="profile-header">
@@ -220,16 +222,15 @@ function ProfilePage() {
                   className="description-input"
                   id="description"
                   placeholder="Tell us about yourself"
-                >
-                </textarea>
+                ></textarea>
               </div>
               <button className="profile-button save-button-programmer">
-                  Save Changes
-                </button>
+                Save Changes
+              </button>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

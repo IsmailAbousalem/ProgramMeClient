@@ -1,21 +1,32 @@
 .profile-container {
-    min-height: 100vh;
+    min-height: 90vh;
     background-color: #000f1f;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
     padding: 20px;
+    margin-bottom: 60px;
+  }
+
+  .programmer-profile {
+  }
+
+  .customer-profile{
+    margin-left: 630px;
+    width: 1500px;
   }
   
   .grid-layout {
     display: grid;
     grid-template-columns: 1fr;
     gap: 8px;
-    max-width: 6xl;
-    margin: 0 auto;
+    max-width: 1240px; /* Limit the max width for centering */
+    width: 100%;
     padding-top: 12px;
     padding-bottom: 12px;
     padding-left: 4px;
     padding-right: 4px;
   }
-  
   @media (min-width: 768px) {
     .grid-layout {
       grid-template-columns: repeat(2, 1fr);
@@ -29,6 +40,9 @@
     font-weight: bold;
     margin-bottom: 6px;
     color: #b4e6f4;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
   }
   
   .profile-card {
