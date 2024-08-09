@@ -119,6 +119,9 @@ Once the application is set up and running, you can access it at http://localhos
 
 - **Presentation**: [My Presentation](https://docs.google.com/presentation/d/1SsvHARBj_2O6pduVYHRfDo9hZpGw-llpNYfBrnJC-tI/edit?usp=sharing)
 - **Resources Used**:
+
+  - **ProgramMe Server Repository**: [Server Repo](https://github.com/IsmailAbousalem/ProgramMeServer) 
+
   - **React Documentation**: [React](https://react.dev/)
   
   - **Spring Boot Documentation**: [Spring Boot](https://docs.spring.io/spring-boot/index.html)
