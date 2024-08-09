@@ -2,6 +2,14 @@ ProgramMe Platform - README
 
 ----
 
+Introduction
+
+Welcome to the **ProgramMe Platform**! We are a comprehensive platform designed for programmers to sell their services, connect with customers, and showcase their skills. The platform allows programmers to create profiles, post services, and engage with potential clients. Customers can browse through programmer profiles, view posts, and reach out directly to hire services.
+
+This project was developed to create a dedicated space for programmers to thrive as freelancers, with a focus on scalability, flexibility, and a seamless user experience for both programmers and customers.
+
+----
+
 - Table of Contents
 - Introduction
 - Features
@@ -14,13 +22,6 @@ ProgramMe Platform - README
 - Future Updates
 - Credits
 
-----
-
-Introduction
-
-**ProgramMe Platform** is a comprehensive platform designed for programmers to sell their services, connect with customers, and showcase their skills. The platform allows programmers to create profiles, post services, and engage with potential clients. Customers can browse through programmer profiles, view posts, and reach out directly to hire services.
-
-This project was developed to create a dedicated space for programmers to thrive as freelancers, with a focus on scalability, flexibility, and a seamless user experience for both programmers and customers.
 
 ---
 
