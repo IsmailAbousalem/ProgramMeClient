@@ -12,13 +12,11 @@ ProgramMe Platform - README
 - Technologies Used
 - Challenges Faced
 - Future Updates
-- License
 - Credits
 
 ----
 
 Introduction
-
 
 **ProgramMe Platform** is a comprehensive platform designed for programmers to sell their services, connect with customers, and showcase their skills. The platform allows programmers to create profiles, post services, and engage with potential clients. Customers can browse through programmer profiles, view posts, and reach out directly to hire services.
 
