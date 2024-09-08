@@ -20,7 +20,7 @@ function CreatePostPage() {
       setIsEditMode(true);
       // Fetch post data if editing
       const fetchPostData = async () => {
-        const response = await fetch(`http://localhost:8080/posts/${id}`);
+        const response = await fetch(`https://programmeserver.onrender.com/posts/${id}`);
         if (response.ok) {
           const post = await response.json();
           setFormData({
@@ -59,8 +59,8 @@ function CreatePostPage() {
     }
 
     const url = isEditMode
-      ? `http://localhost:8080/posts/${id}`
-      : "http://localhost:8080/posts";
+      ? `https://programmeserver.onrender.com/posts/${id}`
+      : "https://programmeserver.onrender.com/posts";
 
     const method = isEditMode ? "PUT" : "POST";
 

@@ -31,7 +31,7 @@ function PostDetails() {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/posts/${post.id}`, {
+      const response = await fetch(`https://programmeserver.onrender.com/posts/${post.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

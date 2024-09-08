@@ -36,8 +36,8 @@ function LoginSignUpPage() {
     e.preventDefault();
     
     const url = isRegisterMode
-      ? "http://localhost:8080/auth/signup"
-      : "http://localhost:8080/auth/login";
+      ? "https://programmeserver.onrender.com/auth/signup"
+      : "https://programmeserver.onrender.com/auth/login";
     
     // Prepare the correct payload for login or registration
     const userData = isRegisterMode
