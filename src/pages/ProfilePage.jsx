@@ -31,8 +31,8 @@ function ProfilePage() {
     if (userType && userId) {
       const token = localStorage.getItem('token');
       const url = userType === "customer"
-        ? `http://localhost:8080/customers/${userId}`
-        : `http://localhost:8080/programmers/${userId}`;
+        ? `https://programmeserver.onrender.com/customers/${userId}`
+        : `https://programmeserver.onrender.com/programmers/${userId}`;
       
       fetch(url, {
         method: 'GET',
@@ -102,7 +102,7 @@ function ProfilePage() {
         delete updateData.password;
       }
   
-      const response = await fetch(`http://localhost:8080/customers/${userId}`, {
+      const response = await fetch(`https://programmeserver.onrender.com/customers/${userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ function ProfilePage() {
   
       updateData.skills = programmerData.skills.filter(skill => skill).join(', ');
   
-      const response = await fetch(`http://localhost:8080/programmers/${userId}`, {
+      const response = await fetch(`https://programmeserver.onrender.com/programmers/${userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
