@@ -36,12 +36,12 @@ function LoginSignUpPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    console.log("API_URL:", API_URL);  // Check if API_URL is undefined
+    
 
     const url = isRegisterMode
-      ? `${API_URL}/auth/signup`
-      : `${API_URL}/auth/login`;
-    
+      ? `https://programmeserver.onrender.com/auth/signup`
+      : `https://programmeserver.onrender.com/auth/login`;
+    console.log("API_URL:", API_URL);  // Check if API_URL is undefined
     // Prepare the correct payload for login or registration
     const userData = isRegisterMode
       ? { ...formData, userType: userType === "programmer" ? "programmer" : "customer" }
