@@ -12,6 +12,8 @@ function PostDetails() {
   const [post, setPost] = useState();
   const navigate = useNavigate();
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   // Get the current logged-in user email
   const loggedInUserEmail = localStorage.getItem("userEmail");
 
@@ -31,7 +33,7 @@ function PostDetails() {
     }
 
     try {
-      const response = await fetch(`https://programmeserver.onrender.com/posts/${post.id}`, {
+      const response = await fetch(`${API_URL}/posts/${post.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 
 function ProfilePage() {
   const [userType, setUserType] = useState(null);
+
+  const API_URL = process.env.REACT_APP_API_URL;
   const [customerData, setCustomerData] = useState({
     number: '',
     email: '',
@@ -31,8 +33,8 @@ function ProfilePage() {
     if (userType && userId) {
       const token = localStorage.getItem('token');
       const url = userType === "customer"
-        ? `https://programmeserver.onrender.com/customers/${userId}`
-        : `https://programmeserver.onrender.com/programmers/${userId}`;
+        ? `${API_URL}/customers/${userId}`
+        : `${API_URL}/programmers/${userId}`;
       
       fetch(url, {
         method: 'GET',
@@ -102,7 +104,7 @@ function ProfilePage() {
         delete updateData.password;
       }
   
-      const response = await fetch(`https://programmeserver.onrender.com/customers/${userId}`, {
+      const response = await fetch(`${API_URL}/customers/${userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -132,7 +134,7 @@ function ProfilePage() {
   
       updateData.skills = programmerData.skills.filter(skill => skill).join(', ');
   
-      const response = await fetch(`https://programmeserver.onrender.com/programmers/${userId}`, {
+      const response = await fetch(`${API_URL}/programmers/${userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
