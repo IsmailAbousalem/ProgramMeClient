@@ -15,12 +15,14 @@ function CreatePostPage() {
   const [successMessage, setSuccessMessage] = useState(""); // Track success message
   const navigate = useNavigate();
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     if (id) {
       setIsEditMode(true);
       // Fetch post data if editing
       const fetchPostData = async () => {
-        const response = await fetch(`https://programmeserver.onrender.com/posts/${id}`);
+        const response = await fetch(`${API_URL}/posts/${id}`);
         if (response.ok) {
           const post = await response.json();
           setFormData({
@@ -58,9 +60,11 @@ function CreatePostPage() {
       return;
     }
 
+    const API_URL = process.env.REACT_APP_API_URL;
+
     const url = isEditMode
-      ? `https://programmeserver.onrender.com/posts/${id}`
-      : "https://programmeserver.onrender.com/posts";
+      ? `${API_URL}/posts/${id}`
+      : `${API_URL}/posts`;
 
     const method = isEditMode ? "PUT" : "POST";
 
