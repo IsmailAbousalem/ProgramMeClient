@@ -60,11 +60,11 @@ function CreatePostPage() {
       return;
     }
 
-    const API_URL = process.env.REACT_APP_API_URL;
+    // const API_URL = process.env.REACT_APP_API_URL;
 
     const url = isEditMode
-      ? `${API_URL}/posts/${id}`
-      : `${API_URL}/posts`;
+      ? `https://programmeserver-1.onrender.com/posts/${id}`
+      : `https://programmeserver-1.onrender.com/posts`;
 
     const method = isEditMode ? "PUT" : "POST";
 
