@@ -2,24 +2,54 @@
     background-color: #000f1f;
     border-bottom: #1a3b5d 2px solid;
     color: white;
-
+    padding: 10px 20px; /* Add padding for better spacing */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .title {
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem; /* Adjust font size */
+  }
+  
+  .link-list {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px; /* Add gap between links */
+  }
+  
+  .link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem; /* Adjust font size */
+  }
+  
+  .text-sm {
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column; /* Stack items vertically on small screens */
+      align-items: flex-start;
+      padding: 10px; /* Adjust padding for mobile */
+    }
+  
     .title {
-        text-align: center;
-        color: white;
-        text-decoration: none;
+      font-size: 1.2rem; /* Smaller font size for mobile */
+      margin-bottom: 10px; /* Add margin for spacing */
     }
-
+  
     .link-list {
-        display: flex;
-        justify-content: space-around;
-        
-        .link {
-            color: white;
-            text-decoration: none;
-        }
+      flex-direction: column; /* Stack links vertically on small screens */
+      align-items: flex-start;
+      gap: 10px; /* Adjust gap for mobile */
     }
-
-    .text-sm {
-        color: white;
+  
+    .link {
+      font-size: 0.9rem; /* Smaller font size for mobile */
     }
-}
+  }
