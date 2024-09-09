@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 const PostContext = createContext();
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
 
 function PostProviderWrapper(props) {
   const [posts, setPosts] = useState([]);

@@ -7,7 +7,8 @@ function PostCard({ post }) {
   // Get the current logged-in user email
   const loggedInUserEmail = localStorage.getItem("userEmail");
 
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = process.env.REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
+
 
   const handleDelete = async () => {
     const token = localStorage.getItem("token");
@@ -20,7 +21,7 @@ function PostCard({ post }) {
     }
 
     try {
-      const response = await fetch(`${API_URL}/posts/${post.id}`, {
+      const response = await fetch(`${API_URL}/${post.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

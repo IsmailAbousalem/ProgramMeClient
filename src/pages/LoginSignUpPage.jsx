@@ -5,7 +5,7 @@ import "../styles/LoginSignupPage.css";
 function LoginSignUpPage() {
   const [isRegisterMode, setIsRegisterMode] = useState(false);
   const [userType, setUserType] = useState("customer");
-  const API_URL = process.env.REACT_APP_API_URL || 'https://programmeserver-1.onrender.com/';
+  const API_URL = process.env.REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,8 +39,8 @@ function LoginSignUpPage() {
     
 
     const url = isRegisterMode
-      ? `https://programmeserver-1.onrender.com/auth/signup`
-      : `https://programmeserver-1.onrender.com/auth/login`;
+      ? `${API_URL}`
+      : `${API_URL}`;
     console.log("API_URL:", API_URL);  // Check if API_URL is undefined
     // Prepare the correct payload for login or registration
     const userData = isRegisterMode

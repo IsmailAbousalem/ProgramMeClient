@@ -15,7 +15,7 @@ function CreatePostPage() {
   const [successMessage, setSuccessMessage] = useState(""); // Track success message
   const navigate = useNavigate();
 
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = process.env.REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
 
   useEffect(() => {
     if (id) {
@@ -23,6 +23,7 @@ function CreatePostPage() {
       // Fetch post data if editing
       const fetchPostData = async () => {
         const response = await fetch(`${API_URL}/posts/${id}`);
+        console.log('API_URL:', API_URL);  // This should log: 'https://programmeserver-1.onrender.com'
         if (response.ok) {
           const post = await response.json();
           setFormData({
