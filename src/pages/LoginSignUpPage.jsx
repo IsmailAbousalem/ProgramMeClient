@@ -39,8 +39,8 @@ function LoginSignUpPage() {
     
 
     const url = isRegisterMode
-      ? `https://programmeserver-1.onrender.com//auth/signup`
-      : `https://programmeserver-1.onrender.com//auth/login`;
+      ? `https://programmeserver-1.onrender.com/auth/signup`
+      : `https://programmeserver-1.onrender.com/auth/login`;
     console.log("API_URL:", API_URL);  // Check if API_URL is undefined
     // Prepare the correct payload for login or registration
     const userData = isRegisterMode
