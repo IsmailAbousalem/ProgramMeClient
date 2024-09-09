@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 function ProfilePage() {
   const [userType, setUserType] = useState(null);
 
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = process.env.REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
+
   const [customerData, setCustomerData] = useState({
     number: '',
     email: '',

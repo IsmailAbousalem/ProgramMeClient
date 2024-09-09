@@ -1,20 +1,20 @@
 import { createContext, useState } from "react";
 
 const PostContext = createContext();
-// const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
 
 function PostProviderWrapper(props) {
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
-    const response = await fetch(`https://programmeserver-1.onrender.com/posts`);
+    const response = await fetch(`${API_URL}/posts`);
     const data = await response.json();
     console.log(data);
     setPosts(data);
   };
 
   const getPost = async (id) => {
-    const response = await fetch(`https://programmeserver-1.onrender.com/posts/${id}`);
+    const response = await fetch(`${API_URL}/posts/${id}`);
     const data = await response.json();
     console.log(data);
     return(data);
