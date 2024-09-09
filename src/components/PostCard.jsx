@@ -20,7 +20,7 @@ function PostCard({ post }) {
     }
 
     try {
-      const response = await fetch(`${API_URL}/posts/${post.id}`, {
+      const response = await fetch(`https://programmeserver-1.onrender.com/posts/${post.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
