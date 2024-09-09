@@ -1,6 +1,8 @@
 .home-page {
     background-color: #000f1f;
     min-height: 100vh;
+    /* padding: 20px; */
+    /* Add padding for better spacing */
   }
   
   .svg-header {
@@ -16,3 +18,8 @@
     align-items: center;
   }
   
+  @media (max-width: 768px) {
+    .post-card-list {
+      grid-template-columns: 1fr; /* Single column on small screens */
+    }
+  }

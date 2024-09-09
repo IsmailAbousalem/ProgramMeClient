@@ -165,7 +165,6 @@
   z-index: 3; /* Ensure it is above other elements */
 }
 
-
 .delete-button {
   background-color: #ff4d4d;
   color: #d4fdff;
@@ -193,4 +192,19 @@
 .delete-button:hover {
   background-color: #ff4d4d;
   border-color: #d43838;
+}
+
+@media (max-width: 768px) {
+  .post-card {
+    width: 100%; /* Full width on small screens */
+  }
+
+  .post-card-list {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+
+  .post-actions {
+    flex-direction: column; /* Stack buttons vertically on small screens */
+    align-items: flex-start;
+  }
 }
