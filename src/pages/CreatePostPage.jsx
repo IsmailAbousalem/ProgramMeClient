@@ -15,7 +15,7 @@ function CreatePostPage() {
   const [successMessage, setSuccessMessage] = useState(""); // Track success message
   const navigate = useNavigate();
 
-  const API_URL = process.env.REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
+  const API_URL = import.meta.env.VITE_REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
 
   useEffect(() => {
     if (id) {
