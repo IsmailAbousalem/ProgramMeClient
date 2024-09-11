@@ -7,7 +7,7 @@ function PostCard({ post }) {
   // Get the current logged-in user email
   const loggedInUserEmail = localStorage.getItem("userEmail");
 
-  const API_URL = process.env.REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
+  const API_URL = import.meta.env.VITE_REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
 
 
   const handleDelete = async () => {

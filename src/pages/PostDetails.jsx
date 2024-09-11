@@ -12,7 +12,7 @@ function PostDetails() {
   const [post, setPost] = useState();
   const navigate = useNavigate();
 
-  const API_URL = process.env.REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
+  const API_URL = import.meta.env.VITE_REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
 
 
   // Get the current logged-in user email

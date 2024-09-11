@@ -5,7 +5,7 @@ import "../styles/LoginSignupPage.css";
 function LoginSignUpPage() {
   const [isRegisterMode, setIsRegisterMode] = useState(false);
   const [userType, setUserType] = useState("customer");
-  const API_URL = process.env.REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
+  const API_URL = import.meta.env.VITE_REACT_APP_API_URL || 'https://programmeserver-1.onrender.com';
   const [formData, setFormData] = useState({
     name: "",
     email: "",
