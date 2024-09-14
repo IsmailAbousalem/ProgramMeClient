@@ -1,0 +1,47 @@
+.side-navbar {
+    width: 250px;
+    background-color: #001f3c;
+    padding: 20px;
+    border-radius: 0px;
+    margin-right: 20px; /* Give space between navbar and posts */
+  }
+  
+  .side-navbar input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #0c1b2b;
+    color: white;
+    border: none;
+    border-radius: 0px;
+  }
+  
+  .side-navbar button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #004e73;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+  }
+  
+  .side-navbar button:hover {
+    background-color: #75baff;
+  }
+  
+  /* Responsive styling for smaller screens */
+  @media (max-width: 768px) {
+    .side-navbar {
+      width: 100%; /* Full width on mobile */
+      margin: 0;   /* Remove margins */
+      padding: 10px;
+    }
+  
+    .side-navbar input,
+    .side-navbar button {
+      padding: 8px;
+    }
+  }
+  
