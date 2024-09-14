@@ -29,7 +29,7 @@
 .post-card-list {
   display: grid;
   /* THIS IS HOW MANY POSTS TO SHOW IN ONE ROW */
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 20px;
   list-style: none;
   padding: 0;
@@ -47,7 +47,7 @@
   border: 2px solid #1a3b5d;
   padding: 20px;
   color: #ffffff;
-  width: 400px;
+  width: 800px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
   font-family: 'Arial', sans-serif;
@@ -68,7 +68,7 @@
 
 .date-container {
   position: absolute;
-  top: 10px; /* Adjust as needed */
+  top: 16px; /* Adjust as needed */
   right: 10px; /* Adjust as needed */
   display: flex;
   align-items: center;
@@ -83,7 +83,7 @@
 .calendar-icon {
   width: 16px;  /* Adjusted width */
   height: 16px; /* Adjusted height */
-  margin-right: 8px; /* Space between icon and date text */
+  margin-right: 3px; /* Space between icon and date text */
   margin-top: -20px;
   color: white;
 }
@@ -103,6 +103,7 @@
   margin: 10px 0;
   color: #ffffff;
   text-decoration: none;
+  text-align: left;
 }
 
 .post-card .description {
